@@ -1,0 +1,166 @@
+<UserControl x:Class="Borne.Views.TypeCommandeView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d"
+             d:DesignHeight="752" d:DesignWidth="1100">
+
+    <Grid Background="{StaticResource BackgroundBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- ══ Centre — bienvenue + choix ══ -->
+        <StackPanel Grid.Row="0"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center"
+                    MaxWidth="720">
+
+            <!-- Emoji restaurant -->
+            <TextBlock Text="🍽️"
+                       FontSize="72"
+                       HorizontalAlignment="Center"
+                       Margin="0,0,0,16"/>
+
+            <!-- Nom du restaurant dynamique -->
+            <TextBlock x:Name="txtNomRestaurant"
+                       Text="Bienvenue !"
+                       FontSize="42" FontWeight="Bold"
+                       Foreground="{StaticResource TextBrush}"
+                       HorizontalAlignment="Center"
+                       Margin="0,0,0,8"/>
+
+            <!-- Message d'accueil -->
+            <TextBlock x:Name="txtMessage"
+                       Text="Commandez en quelques secondes"
+                       FontSize="18"
+                       Foreground="{StaticResource TextMutedBrush}"
+                       HorizontalAlignment="Center"
+                       Margin="0,0,0,48"/>
+
+            <!-- ── Deux grandes cartes ── -->
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="32"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- SUR PLACE -->
+                <Border Grid.Column="0"
+                        Style="{StaticResource Card}"
+                        Cursor="Hand"
+                        Padding="0">
+                    <Border.InputBindings>
+                        <MouseBinding MouseAction="LeftClick" Command="{x:Null}"/>
+                    </Border.InputBindings>
+                    <Button Style="{StaticResource BtnBase}"
+                            Background="Transparent"
+                            Click="SurPlace_Click"
+                            Padding="0">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border x:Name="root" Background="Transparent"
+                                        CornerRadius="12" Padding="32,40">
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter TargetName="root" Property="Background" Value="#FFF4EE"/>
+                                        </Trigger>
+                                        <Trigger Property="IsPressed" Value="True">
+                                            <Setter TargetName="root" Property="Background" Value="#FFE8DA"/>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                    <StackPanel HorizontalAlignment="Center">
+                                        <TextBlock Text="🍴"
+                                                   FontSize="56"
+                                                   HorizontalAlignment="Center"
+                                                   Margin="0,0,0,16"/>
+                                        <TextBlock Text="SUR PLACE"
+                                                   FontSize="22" FontWeight="Bold"
+                                                   Foreground="{StaticResource TextBrush}"
+                                                   HorizontalAlignment="Center"
+                                                   Margin="0,0,0,8"/>
+                                        <TextBlock Text="Mangez ici"
+                                                   FontSize="14"
+                                                   Foreground="{StaticResource TextMutedBrush}"
+                                                   HorizontalAlignment="Center"/>
+                                        <!-- Pastille colorée -->
+                                        <Border Background="{StaticResource AccentBrush}"
+                                                CornerRadius="20"
+                                                Padding="20,8"
+                                                Margin="0,20,0,0"
+                                                HorizontalAlignment="Center">
+                                            <TextBlock Text="Choisir"
+                                                       FontSize="13" FontWeight="SemiBold"
+                                                       Foreground="White"/>
+                                        </Border>
+                                    </StackPanel>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                </Border>
+
+                <!-- À EMPORTER -->
+                <Border Grid.Column="2"
+                        Style="{StaticResource Card}"
+                        Cursor="Hand">
+                    <Button Style="{StaticResource BtnBase}"
+                            Background="Transparent"
+                            Click="Emporter_Click"
+                            Padding="0">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border x:Name="root" Background="Transparent"
+                                        CornerRadius="12" Padding="32,40">
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter TargetName="root" Property="Background" Value="#EEF4FF"/>
+                                        </Trigger>
+                                        <Trigger Property="IsPressed" Value="True">
+                                            <Setter TargetName="root" Property="Background" Value="#DAE8FF"/>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                    <StackPanel HorizontalAlignment="Center">
+                                        <TextBlock Text="🥡"
+                                                   FontSize="56"
+                                                   HorizontalAlignment="Center"
+                                                   Margin="0,0,0,16"/>
+                                        <TextBlock Text="À EMPORTER"
+                                                   FontSize="22" FontWeight="Bold"
+                                                   Foreground="{StaticResource TextBrush}"
+                                                   HorizontalAlignment="Center"
+                                                   Margin="0,0,0,8"/>
+                                        <TextBlock Text="Repartez avec votre repas"
+                                                   FontSize="14"
+                                                   Foreground="{StaticResource TextMutedBrush}"
+                                                   HorizontalAlignment="Center"/>
+                                        <Border Background="{StaticResource PrimaryBrush}"
+                                                CornerRadius="20"
+                                                Padding="20,8"
+                                                Margin="0,20,0,0"
+                                                HorizontalAlignment="Center">
+                                            <TextBlock Text="Choisir"
+                                                       FontSize="13" FontWeight="SemiBold"
+                                                       Foreground="White"/>
+                                        </Border>
+                                    </StackPanel>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                </Border>
+            </Grid>
+        </StackPanel>
+
+        <!-- Pied de page discret -->
+        <TextBlock Grid.Row="1"
+                   Text="Touchez un bouton pour commencer votre commande"
+                   FontSize="13"
+                   Foreground="{StaticResource TextMutedBrush}"
+                   HorizontalAlignment="Center"
+                   Margin="0,0,0,24"/>
+    </Grid>
+</UserControl>

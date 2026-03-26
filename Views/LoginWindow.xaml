@@ -1,0 +1,116 @@
+<Window x:Class="Borne.Views.LoginWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Connexion — Borne"
+        Height="520" Width="420"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+        Background="{StaticResource PrimaryBrush}">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- ══ Carte de login centrée ══ -->
+        <Border Grid.Row="0"
+                Background="White"
+                CornerRadius="16"
+                Margin="32"
+                Padding="36,40">
+            <Border.Effect>
+                <DropShadowEffect Color="#000" Opacity="0.18" BlurRadius="30" ShadowDepth="0"/>
+            </Border.Effect>
+
+            <StackPanel VerticalAlignment="Center">
+
+                <!-- Logo / titre -->
+                <TextBlock Text="🍽️"
+                           FontSize="48"
+                           HorizontalAlignment="Center"
+                           Margin="0,0,0,8"/>
+
+                <TextBlock Text="Connexion"
+                           FontSize="26" FontWeight="Bold"
+                           Foreground="{StaticResource TextBrush}"
+                           HorizontalAlignment="Center"
+                           Margin="0,0,0,6"/>
+
+                <TextBlock Text="Accès réservé au personnel"
+                           FontSize="13"
+                           Foreground="{StaticResource TextMutedBrush}"
+                           HorizontalAlignment="Center"
+                           Margin="0,0,0,30"/>
+
+                <!-- Champ identifiant -->
+                <TextBlock Text="Identifiant"
+                           FontSize="13" FontWeight="SemiBold"
+                           Foreground="{StaticResource TextBrush}"
+                           Margin="0,0,0,6"/>
+                <TextBox x:Name="txtUsername"
+                         Margin="0,0,0,16"
+                         KeyDown="Field_KeyDown"/>
+
+                <!-- Champ mot de passe -->
+                <TextBlock Text="Mot de passe"
+                           FontSize="13" FontWeight="SemiBold"
+                           Foreground="{StaticResource TextBrush}"
+                           Margin="0,0,0,6"/>
+                <PasswordBox x:Name="txtPassword"
+                             Margin="0,0,0,20"
+                             KeyDown="Field_KeyDown"/>
+
+                <!-- Message d'erreur -->
+                <Border x:Name="borderError"
+                        Background="#FFF0F0"
+                        BorderBrush="#FFCCCC"
+                        BorderThickness="1"
+                        CornerRadius="8"
+                        Padding="12,8"
+                        Margin="0,0,0,16"
+                        Visibility="Collapsed">
+                    <TextBlock x:Name="txtError"
+                               Foreground="{StaticResource DangerBrush}"
+                               FontSize="13"
+                               TextWrapping="Wrap"/>
+                </Border>
+
+                <!-- Bouton login -->
+                <Button Content="SE CONNECTER"
+                        Style="{StaticResource BtnAccent}"
+                        FontSize="15"
+                        Padding="0,14"
+                        Click="BtnLogin_Click">
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border x:Name="root"
+                                    Background="{TemplateBinding Background}"
+                                    CornerRadius="8"
+                                    Padding="{TemplateBinding Padding}">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter TargetName="root" Property="Opacity" Value="0.88"/>
+                                </Trigger>
+                                <Trigger Property="IsPressed" Value="True">
+                                    <Setter TargetName="root" Property="Opacity" Value="0.72"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
+            </StackPanel>
+        </Border>
+
+        <!-- Pied de page -->
+        <TextBlock Grid.Row="1"
+                   Text="© Borne de commande"
+                   Foreground="#546E7A"
+                   FontSize="11"
+                   HorizontalAlignment="Center"
+                   Margin="0,0,0,12"/>
+    </Grid>
+</Window>
